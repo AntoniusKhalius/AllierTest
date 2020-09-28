@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="yes"?>
-<questionnaire name='NOM' displayName='QCM Nom'>
-<description></description>
-	<question type='text' name='QCM NOM'>
-		<text>Quel est votre nom?</text>
-		<defaultreponse>Gimenez</defaultreponse>
-		<maxCharacters>75</maxCharacters>
-	</question>
-</questionnaire>
