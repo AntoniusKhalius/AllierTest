@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes"?>
+<questionnaire name='VILLES' displayName='QCM villes'>
+<description>Question sur les villes</description>
+	<question type='combo' name='QCM capitale'>
+		<text>Quelle est la capitale de la France ?</text>
+		<reponses>
+			<reponse default ='false'>Vichy</reponse>
+			<reponse default ='true'>Toulouse</reponse>
+			<reponse default ='false'>Bordeaux</reponse>
+			<reponse default ='false'>Paris</reponse>
+		</reponses>
+	</question>
+</questionnaire>
