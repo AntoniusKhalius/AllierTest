@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml;
+using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace qcm
 {
@@ -114,12 +116,18 @@ namespace qcm
             // la valeur de son attribut "name" (ici : name="AppliQuestions")
             // string PremierNoeud = ... ;
 
+            string PremierNoeud = xr.ChildNodes[1].Attributes["name"].Value;
+
             // Initialise la propriété "Titre" de la nouvelle feuille à partir de la valeur
             // de l'attribut "displayName" (ici : displayName="Questionnaire" )
             // this.LeTitre = ... ;
 
+            this.LeTitre = xr.ChildNodes[1].Attributes["displayName"].Value;
+
             // Création d'une COLLECTION ordonnée de NOEUDS <question>
             // XmlNodeList LesNoeuds = ;
+            
+            XmlNodeList LesNoeuds = xr.GetElementsByTagName("question");
 
             // PARCOURS de l'ensemble des noeuds <question> présents dans la collection
             foreach (XmlNode UnNoeud in LesNoeuds)
@@ -186,6 +194,9 @@ namespace qcm
         {
             // ...
             // ...
+            ComboBox maComboBox = new ComboBox();
+            maComboBox.Name = unNoeud.Attributes["name"].Value;
+            desControles.Add(maComboBox);
 
             // Retour de l'emplacement pour placer le nouveau contrôle
             // (ou bien spécifier la dimension de la feuille)
@@ -197,6 +208,9 @@ namespace qcm
         {
             // ...
             // ...
+            ListBox maListBox = new ListBox();
+            maListBox.Name = unNoeud.Attributes["name"].Value;
+            desControles.Add(maListBox);
 
             // Retour de l'emplacement pour placer le nouveau contrôle
             // (ou bien spécifier la dimension de la feuille)
@@ -296,5 +310,9 @@ namespace qcm
 
         #endregion
 
+        private void questionnaire_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(224, 58);
             this.Name = "questionnaire";
             this.Text = "Sans titre";
+            this.Load += new System.EventHandler(this.questionnaire_Load);
             this.ResumeLayout(false);
 
         }
