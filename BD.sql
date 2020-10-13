@@ -32,19 +32,16 @@ CREATE TABLE Questions
 -- Table REPONSES � ECRIRE
 CREATE TABLE Reponses
 (
-	id VARCHAR(6),
+	id SMALLINT AUTO_INCREMENT,
 	cle_questionnaire VARCHAR(12),
 	utilisateur VARCHAR(40),
-	rang VARCHAR(6),
+	rang VARCHAR(6) UNIQUE,
 	date_creation DATETIME,
 	reponse VARCHAR(80),
-	CONSTRAINT pk_reponses PRIMARY KEY(id),
-	CONSTRAINT fk_reponses_questionnaire FOREIGN KEY(cle_questionnaire) REFERENCES Questionnaire(cle) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONStraint fk_reponses_questions FOREIGN KEY(rang) REFERENCES Questions(rang) ON ON DELETE CASCADE ON ON UPDATE CASCADE
+	CONSTRAINT pk_reponses PRIMARY KEY(id, cle_questionnaire),
+	CONSTRAINT fk_reponses_questionnaire FOREIGN KEY(cle_questionnaire) REFERENCES Questionnaire(cle) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
 DESC Questionnaire;
 DESC Questions;
 DESC Reponses;
-
-
