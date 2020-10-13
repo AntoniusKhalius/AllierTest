@@ -209,7 +209,15 @@ namespace qcm
             // ...
             // ...
             ListBox maListBox = new ListBox();
-            maListBox.Name = unNoeud.Attributes["name"].Value;
+
+            if (unNoeud.Attributes["name"] != null)
+                maListBox.Name = unNoeud.Attributes["name"].Value;
+
+            if (MultiSelect)
+                maListBox.SelectionMode = SelectionMode.MultiExtended;
+
+            maListBox.Tag = tag;
+
             desControles.Add(maListBox);
 
             // Retour de l'emplacement pour placer le nouveau contrôle
@@ -221,6 +229,14 @@ namespace qcm
         private Point AddRadioButtons(XmlNode unNoeud, Control.ControlCollection desControles, Point unEmplacement, string tag)
         {
             // ...
+            RadioButton monRadioButton = new RadioButton();
+
+            if (unNoeud.Attributes["name"] != null)
+                monRadioButton.Name = unNoeud.Attributes["name"].Value;
+
+
+            desControles.Add(monRadioButton);
+
 
             // Retour de l'emplacement pour placer le nouveau contrôle
             // (ou bien spécifier la dimension de la feuille)
