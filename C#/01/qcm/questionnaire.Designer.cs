@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(224, 58);
             this.Name = "questionnaire";
             this.Text = "Sans titre";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.questionnaire_FormClosing);
             this.ResumeLayout(false);
 
         }

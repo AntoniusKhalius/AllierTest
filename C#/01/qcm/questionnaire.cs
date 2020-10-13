@@ -375,19 +375,16 @@ namespace qcm
         //----------------------------------------------------------------------
         public void Afficher()
         {
-            this.Réponse = "";
-
-            // ...
-            // ...
+            this.Réponse = "rgeiourjgoerijgeorjigero";
 
             MessageBox.Show(Réponse, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion
 
-        private void questionnaire_Load(object sender, EventArgs e)
+        private void questionnaire_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            this.Afficher();
         }
     }
 }
