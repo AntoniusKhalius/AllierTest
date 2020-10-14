@@ -19,8 +19,8 @@
 	<question type='liste' name='Soupes'>
 		<text>Quelles sont les soupes que vous aimez ?</text>
 		<reponses>
-			<reponse default ='true'>Soupe aux vermicelles</reponse>
-			<reponse default ='false'>Soupe de tomate</reponse>
+			<reponse default ='false'>Soupe aux vermicelles</reponse>
+			<reponse default ='true'>Soupe de tomate</reponse>
 			<reponse default ='false'>Soupe de legume</reponse>
 		</reponses>
 	</question>

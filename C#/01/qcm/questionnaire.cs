@@ -116,13 +116,13 @@ namespace qcm
             // la valeur de son attribut "name" (ici : name="AppliQuestions")
             // string PremierNoeud = ... ;
 
-            string PremierNoeud = xr.ChildNodes[1].Attributes["name"].Value;
+            string PremierNoeud = xr.SelectSingleNode("questionnaire").Attributes["name"].Value;
 
             // Initialise la propriété "Titre" de la nouvelle feuille à partir de la valeur
             // de l'attribut "displayName" (ici : displayName="Questionnaire" )
             // this.LeTitre = ... ;
 
-            this.LeTitre = xr.ChildNodes[1].Attributes["displayName"].Value;
+            this.LeTitre = xr.SelectSingleNode("questionnaire").Attributes["displayName"].Value;
 
             // Création d'une COLLECTION ordonnée de NOEUDS <question>
             // XmlNodeList LesNoeuds = ;
@@ -192,11 +192,36 @@ namespace qcm
         // A COMPLETER
         private Point AddComboBox(XmlNode unNoeud, Control.ControlCollection desControles, Point unEmplacement, string tag)
         {
-            // ...
-            // ...
             ComboBox maComboBox = new ComboBox();
-            maComboBox.Name = unNoeud.Attributes["name"].Value;
+
+            if (unNoeud.Attributes["name"] != null)
+                maComboBox.Name = unNoeud.Attributes["name"].Value;
+
+            maComboBox.Tag = tag;
+            maComboBox.Width = LARGEUR_CONTROLES;
+            
+            Label monLabel = new Label();
+            monLabel.Name = maComboBox.Name + "Label";
+            if (unNoeud.SelectSingleNode("text") != null)
+                monLabel.Text = unNoeud.SelectSingleNode("text").InnerText;
+
+            foreach (XmlNode rep in unNoeud.SelectSingleNode("reponses").ChildNodes)
+            {
+                maComboBox.Items.Add(rep.InnerText);
+                if (rep.Attributes["default"] != null && rep.Attributes["default"].Value.ToString() == "true")
+                {
+                    maComboBox.SelectedText = maComboBox.Items[maComboBox.Items.Count - 1].ToString();
+                }
+            }
+            monLabel.Width = LARGEUR_CONTROLES;
+
+            monLabel.Location = unEmplacement;
+            desControles.Add(monLabel);
+            unEmplacement.Y += monLabel.Height;
+
+            maComboBox.Location = unEmplacement;
             desControles.Add(maComboBox);
+            unEmplacement.Y += maComboBox.Height + 15;
 
             // Retour de l'emplacement pour placer le nouveau contrôle
             // (ou bien spécifier la dimension de la feuille)
@@ -206,19 +231,42 @@ namespace qcm
         // A COMPLETER
         private Point AddListBox(XmlNode unNoeud, Control.ControlCollection desControles, Point unEmplacement, string tag, bool MultiSelect)
         {
-            // ...
-            // ...
+            // Création du contrôle ListBox
             ListBox maListBox = new ListBox();
 
+            // On change le nom du contrôle pour l'attribut nom de la balise <question> 
             if (unNoeud.Attributes["name"] != null)
                 maListBox.Name = unNoeud.Attributes["name"].Value;
-
+            
             if (MultiSelect)
                 maListBox.SelectionMode = SelectionMode.MultiExtended;
 
             maListBox.Tag = tag;
+            maListBox.Width = LARGEUR_CONTROLES;
+            
+            Label monLabel = new Label();
+            monLabel.Name = maListBox.Name + "Label";
+            if (unNoeud.SelectSingleNode("text") != null)
+                monLabel.Text = unNoeud.SelectSingleNode("text").InnerText;
 
+            foreach (XmlNode rep in unNoeud.SelectSingleNode("reponses").ChildNodes)
+            {
+                maListBox.Items.Add(rep.InnerText);
+                if (rep.Attributes["default"] != null && rep.Attributes["default"].Value.ToString() == "true")
+                {
+                    maListBox.SetSelected(maListBox.Items.Count - 1, true);
+                }
+            }
+
+            monLabel.Width = LARGEUR_CONTROLES;
+
+            monLabel.Location = unEmplacement;
+            desControles.Add(monLabel);
+            unEmplacement.Y += monLabel.Height;
+
+            maListBox.Location = unEmplacement;
             desControles.Add(maListBox);
+            unEmplacement.Y += maListBox.Height + 15;
 
             // Retour de l'emplacement pour placer le nouveau contrôle
             // (ou bien spécifier la dimension de la feuille)
@@ -228,16 +276,41 @@ namespace qcm
         // A COMPLETER
         private Point AddRadioButtons(XmlNode unNoeud, Control.ControlCollection desControles, Point unEmplacement, string tag)
         {
-            // ...
-            RadioButton monRadioButton = new RadioButton();
 
-            if (unNoeud.Attributes["name"] != null)
-                monRadioButton.Name = unNoeud.Attributes["name"].Value;
+            Label monLabel = new Label();
+            if (unNoeud.SelectSingleNode("text") != null)
+                monLabel.Text = unNoeud.SelectSingleNode("text").InnerText;
 
+            monLabel.Location = unEmplacement;
+            desControles.Add(monLabel);
+            unEmplacement.Y += monLabel.Height;
 
-            desControles.Add(monRadioButton);
+            foreach (XmlNode rep in unNoeud.SelectSingleNode("reponses").ChildNodes)
+            {
+                RadioButton monRadioButton = new RadioButton();
 
+                if (unNoeud.Attributes["name"] != null)
+                    monRadioButton.Name = unNoeud.Attributes["name"].Value;
 
+                monRadioButton.Text = rep.InnerText;
+
+                if (rep.Attributes["default"] != null && rep.Attributes["default"].Value.ToString() == "true")
+                {
+                    monRadioButton.Checked = true;
+                }
+
+                monLabel.Width = LARGEUR_CONTROLES;
+
+                monRadioButton.Tag = tag;
+                monRadioButton.Width = LARGEUR_CONTROLES;
+
+                monRadioButton.Location = unEmplacement;
+                desControles.Add(monRadioButton);
+                unEmplacement.Y += monRadioButton.Height;
+
+            }
+
+            unEmplacement.Y += 15;
             // Retour de l'emplacement pour placer le nouveau contrôle
             // (ou bien spécifier la dimension de la feuille)
             return unEmplacement;
@@ -304,7 +377,7 @@ namespace qcm
 
             maTextBox.Location = unEmplacement;
             desControles.Add(maTextBox);
-            unEmplacement.Y += maTextBox.Height + 10;
+            unEmplacement.Y += maTextBox.Height + 15;
 
             return unEmplacement;
         }
@@ -318,17 +391,57 @@ namespace qcm
         {
             this.Réponse = "";
 
-            // ...
-            // ...
+            foreach (Control unControl in this.TousLesControles)
+            {
+                string classeControl = unControl.GetType().Name.ToLower();
+                
+                switch (classeControl)
+                {
+                    case "label":
+                        Label leLabel = (Label)unControl;
+                        this.Réponse += "\n" + leLabel.Text;
+                        break;
+
+                    case "combobox":
+                        ComboBox laComboBox = (ComboBox)unControl;
+                        this.Réponse += "\n" + laComboBox.Text + "\n";
+                        break;
+
+                    case "radiobutton":
+                        RadioButton leRadioButton = (RadioButton)unControl;
+                        if (leRadioButton.Checked)
+                        {
+                            this.Réponse += "\n" + leRadioButton.Text + "\n";
+                        }
+                        break;
+
+                    case "textbox":
+                        TextBox laTextBox = (TextBox)unControl;
+                        this.Réponse += "\n" + laTextBox.Text + "\n";
+                        break;
+
+                    case "listbox":
+                        ListBox laListBox = (ListBox)unControl;
+                        /*
+                        this.Réponse += "\n" + laListBox.Text + "\n";
+                        */
+                        foreach (string value in laListBox.SelectedItems)
+                        {
+                            this.Réponse += "\n"+value;
+                        }
+                        this.Réponse += "\n";
+                        break;
+                }
+            }
 
             MessageBox.Show(Réponse, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion
 
-        private void questionnaire_Load(object sender, EventArgs e)
+        private void questionnaire_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            this.Afficher();
         }
     }
 }
