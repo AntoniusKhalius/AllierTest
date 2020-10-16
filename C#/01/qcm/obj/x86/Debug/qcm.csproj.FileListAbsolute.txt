@@ -70,3 +70,5 @@ C:\Users\siosl\Documents\ELBALI\PPE\PPE_AllierTest\C#\01\qcm\obj\x86\Debug\qcm.P
 C:\Users\siosl\Documents\ELBALI\PPE\PPE_AllierTest\C#\01\qcm\obj\x86\Debug\qcm.questionnaire.resources
 C:\Users\siosl\Documents\ELBALI\PPE\PPE_AllierTest\C#\01\qcm\obj\x86\Debug\qcm.csproj.GenerateResource.Cache
 C:\Users\siosl\Documents\ELBALI\PPE\PPE_AllierTest\C#\01\qcm\obj\x86\Debug\qcm.csprojResolveAssemblyReference.cache
+C:\Users\siosl\Documents\ELBALI\PPE\PPE_AllierTest\C#\01\qcm\obj\x86\Debug\qcm.container.resources
+C:\Users\siosl\Documents\ELBALI\PPE\PPE_AllierTest\C#\01\qcm\obj\x86\Debug\qcm.xmlSelection.resources

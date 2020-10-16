@@ -42,14 +42,14 @@ namespace qcm
 
         #region CONSTRUCTEUR
 
-        public questionnaire()
+        public questionnaire(string nomFichier)
         {
             InitializeComponent();
 
             // Remplir le questionnaire à partir du document XML
             // REMARQUE : ici on transmet "en dur" un nom de fichier.
             // Il s'agira de transmettre le fichier choisi par l'utilisateur.
-            this.CreerAPartirXML("Gouts.xml");
+            this.CreerAPartirXML(nomFichier);
         }
 
         #endregion
@@ -397,37 +397,37 @@ namespace qcm
                 
                 switch (classeControl)
                 {
-                    case "label":
-                        Label leLabel = (Label)unControl;
-                        this.Réponse += "\n" + leLabel.Text;
-                        break;
-
                     case "combobox":
                         ComboBox laComboBox = (ComboBox)unControl;
-                        this.Réponse += "\n" + laComboBox.Text + "\n";
+                        this.Réponse += "\n" + laComboBox.Name + " : ";
+                        this.Réponse += "\n - " + laComboBox.Text + "\n";
                         break;
 
                     case "radiobutton":
                         RadioButton leRadioButton = (RadioButton)unControl;
                         if (leRadioButton.Checked)
                         {
-                            this.Réponse += "\n" + leRadioButton.Text + "\n";
+                            this.Réponse += "\n" + leRadioButton.Name + " : ";
+                            this.Réponse += "\n - " + leRadioButton.Text + "\n";
                         }
                         break;
 
                     case "textbox":
                         TextBox laTextBox = (TextBox)unControl;
-                        this.Réponse += "\n" + laTextBox.Text + "\n";
+                        this.Réponse += "\n" + laTextBox.Name + " : ";
+                        foreach (string ligne in laTextBox.Lines)
+                        {
+                            this.Réponse += "\n - " + ligne;
+                        }
+                        this.Réponse += "\n";
                         break;
 
                     case "listbox":
                         ListBox laListBox = (ListBox)unControl;
-                        /*
-                        this.Réponse += "\n" + laListBox.Text + "\n";
-                        */
+                        this.Réponse += "\n" + laListBox.Name + " : ";
                         foreach (string value in laListBox.SelectedItems)
                         {
-                            this.Réponse += "\n"+value;
+                            this.Réponse += "\n - "+value;
                         }
                         this.Réponse += "\n";
                         break;

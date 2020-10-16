@@ -13,7 +13,7 @@ namespace qcm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new questionnaire());
+            Application.Run(new container());
         }
     }
 }

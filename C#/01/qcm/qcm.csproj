@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="container.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="container.Designer.cs">
+      <DependentUpon>container.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="questionnaire.cs">
@@ -54,6 +60,15 @@
     <Compile Include="questionnaire.Designer.cs">
       <DependentUpon>questionnaire.cs</DependentUpon>
     </Compile>
+    <Compile Include="xmlSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="xmlSelection.Designer.cs">
+      <DependentUpon>xmlSelection.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="container.resx">
+      <DependentUpon>container.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -65,6 +80,9 @@
     </Compile>
     <EmbeddedResource Include="questionnaire.resx">
       <DependentUpon>questionnaire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xmlSelection.resx">
+      <DependentUpon>xmlSelection.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
