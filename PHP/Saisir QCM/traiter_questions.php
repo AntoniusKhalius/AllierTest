@@ -1,15 +1,15 @@
 <?php
 //----------------------------------
-// Récupérer la clé du QUESTIONNAIRE
+// Rï¿½cupï¿½rer la clï¿½ du QUESTIONNAIRE
 //----------------------------------
 session_start();
 $cle=$_SESSION["cle"];
 
 //------------------------------
-// Récupérer les valeurs postées
+// Rï¿½cupï¿½rer les valeurs postï¿½es
 //------------------------------
-$méthode=$_SERVER["REQUEST_METHOD"];
-if ($méthode=="GET")
+$mï¿½thode=$_SERVER["REQUEST_METHOD"];
+if ($mï¿½thode=="GET")
 	$param=$_GET;
 else 
 	$param=$_POST;
@@ -19,23 +19,23 @@ $name=$param["name"];
 $text=$param["text"];
 $defaut=$param["defaut"];
 
-// La requête est valide si tous les champs ont été saisis (au - 1 réponse)
+// La requï¿½te est valide si tous les champs ont ï¿½tï¿½ saisis (au - 1 rï¿½ponse)
 // Si non, reaffichage de la page de saisie des questions
-$requêteValide=($type!="" && $name!="" && $text!="" && $defaut!="" && $param["reponses"]!="");
-if ($requêteValide)
+$requï¿½teValide=($type!="" && $name!="" && $text!="" && $defaut!="" && $param["reponses"]!="");
+if ($requï¿½teValide)
 	{
 	//-----------------------------------------------------------
-	// Récupérer la liste de REPONSES
-	// Le contenu de textarea se présente sous la forme :
+	// Rï¿½cupï¿½rer la liste de REPONSES
+	// Le contenu de textarea se prï¿½sente sous la forme :
 	// "ligne1\r\nligne2\r\nligne3"
-	// Les lignes sont séparées entre elles par la séquence "\r\
-	// on récupère chaque sous chaîne dans un tableau
+	// Les lignes sont sï¿½parï¿½es entre elles par la sï¿½quence "\r\
+	// on rï¿½cupï¿½re chaque sous chaï¿½ne dans un tableau
 	//-----------------------------------------------------------
 	$reponses=explode("\r\n",$param["reponses"]);
 	
 	//-------------------------------------------------
-	// Prise en compte des apostrophes dans les chaînes
-	// pour pouvoir faire un INSERT : ' remplacé par \'
+	// Prise en compte des apostrophes dans les chaï¿½nes
+	// pour pouvoir faire un INSERT : ' remplacï¿½ par \'
 	//-------------------------------------------------
 	$name = str_replace("'", "\'", $name);
 	$text = str_replace("'", "\'", $text);
@@ -57,18 +57,18 @@ if ($requêteValide)
 	$bdd="QCM";			// BD MySQL
 	$hote="localhost";	// Serveur
 	
-	// 3. Connexion au serveur et à la BD
-	$cnx = mysql_connect($hote, $user, $pwd);
+	// 3. Connexion au serveur et ï¿½ la BD
+	$cnx = mysqli_connect($hote, $user, $pwd ,$bdd);
 	if (! $cnx)
 		{
 		echo "Connexion au serveur impossible !";
 		mysql_close($cnx);
 		exit();
 		}
-	$labd=mysql_select_db($bdd,$cnx);
+		$labd=mysqli_select_db($cnx,$bdd);
 	if (! $labd)
 		{
-		echo "Connexion à la base de données impossible !";
+		echo "Connexion ï¿½ la base de donnï¿½es impossible !";
 		mysql_close($cnx);
 		exit();
 		}
@@ -86,16 +86,16 @@ if ($requêteValide)
  
 	$SQL = $SQL . ",".$defaut.")"; 	
 
-	$execution= mysql_query($SQL,$cnx);
+	$execution= $cnx->query($SQL);
 	if (! $execution)
 		{
-		echo "Création des QUESTIONS impossible !";
+		echo "Crï¿½ation des QUESTIONS impossible !";
 		mysql_close($cnx);
 		exit();
 		}
 
 	// 5. Fin de connexion
-	mysql_close($cnx); 
+	mysqli_close($cnx); 
 	}
 else
 	header('Location: saisir_questions.php');
@@ -107,7 +107,7 @@ else
 </HEAD>
 <BODY>
 <FORM>
-<h1>Question enregistrée</h1>
+<h1>Question enregistrï¿½e</h1>
 <P>
 	<input value="Nouvelle question" onclick="self.location.href='saisir_questions.php'" />
 	<input value="Nouveau questionnaire" onclick="self.location.href='saisir_questionnaire.php'" />

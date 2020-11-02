@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fermerQuestionnaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fermerQuestionnaire.Designer.cs">
+      <DependentUpon>fermerQuestionnaire.cs</DependentUpon>
+    </Compile>
     <Compile Include="container.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,12 +66,21 @@
     <Compile Include="questionnaire.Designer.cs">
       <DependentUpon>questionnaire.cs</DependentUpon>
     </Compile>
-    <Compile Include="xmlSelection.cs">
+    <Compile Include="validerQuestionnaire.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="xmlSelection.Designer.cs">
-      <DependentUpon>xmlSelection.cs</DependentUpon>
+    <Compile Include="validerQuestionnaire.Designer.cs">
+      <DependentUpon>validerQuestionnaire.cs</DependentUpon>
     </Compile>
+    <Compile Include="ouvrirQuestionnaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ouvrirQuestionnaire.Designer.cs">
+      <DependentUpon>ouvrirQuestionnaire.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="fermerQuestionnaire.resx">
+      <DependentUpon>fermerQuestionnaire.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="container.resx">
       <DependentUpon>container.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,8 +96,11 @@
     <EmbeddedResource Include="questionnaire.resx">
       <DependentUpon>questionnaire.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="xmlSelection.resx">
-      <DependentUpon>xmlSelection.cs</DependentUpon>
+    <EmbeddedResource Include="validerQuestionnaire.resx">
+      <DependentUpon>validerQuestionnaire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ouvrirQuestionnaire.resx">
+      <DependentUpon>ouvrirQuestionnaire.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

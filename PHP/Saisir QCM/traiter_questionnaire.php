@@ -1,10 +1,10 @@
 <?php
 //------------------------------
-// Récupérer les valeurs postées
+// Rï¿½cupï¿½rer les valeurs postï¿½es
 //------------------------------
-// La récupération dépend de la méthode d'envoi de ceux-ci
-$méthode=$_SERVER["REQUEST_METHOD"];
-if ($méthode=="GET")
+// La rï¿½cupï¿½ration dï¿½pend de la mï¿½thode d'envoi de ceux-ci
+$mï¿½thode=$_SERVER["REQUEST_METHOD"];
+if ($mï¿½thode=="GET")
 	$param=$_GET;
 else 
 	$param=$_POST;
@@ -13,21 +13,21 @@ $name=$param["name"];
 $displayName=$param["displayName"];
 $description=$param["description"];
 
-// La requête est valide si tous les champs ont été saisis
+// La requï¿½te est valide si tous les champs ont ï¿½tï¿½ saisis
 // Si non, reaffichage de la page de saisie du questionnaire
-$requêteValide=($name!="" && $displayName!="");
-if ($requêteValide)
+$requï¿½teValide=($name!="" && $displayName!="");
+if ($requï¿½teValide)
 	{
 	//----------------------------------
 	// Ajout du QUESTIONNAIRE dans la BD
 	//----------------------------------
 	
-	// 1. Formatage de la CLE (année+mois+jour+heure+minute+seconde)
+	// 1. Formatage de la CLE (annï¿½e+mois+jour+heure+minute+seconde)
 	$cle = time();
 	$cle = date("ymjhis",$cle);
 	
-	// 2. Prise en compte des apostrophes dans les chaînes
-	// pour pouvoir faire un INSERT : ' remplacé par \'
+	// 2. Prise en compte des apostrophes dans les chaï¿½nes
+	// pour pouvoir faire un INSERT : ' remplacï¿½ par \'
 	$name = str_replace("'", "\'", $name);
 	$displayName = str_replace("'", "\'", $displayName);
 	$description = str_replace("'", "\'", $description);
@@ -35,21 +35,21 @@ if ($requêteValide)
 	// 3. Configuration serveur et BD
 	$user="root";		// Login
 	$pwd="";			// pwd
-	$bdd="QCM";			// BD MySQL
+	$bdd="qcm";			// BD MySQL
 	$hote="localhost";	// Serveur
 	
-	// 4. Connexion au serveur et à la BD
-	$cnx = mysql_connect($hote, $user, $pwd);
+	// 4. Connexion au serveur et ï¿½ la BD
+	$cnx = mysqli_connect($hote, $user, $pwd ,$bdd);
 	if (! $cnx)
 		{
 		echo "Connexion au serveur impossible !";
 		mysql_close($cnx);
 		exit();
 		}
-	$labd=mysql_select_db($bdd,$cnx);
+	$labd=mysqli_select_db($cnx,$bdd);
 	if (! $labd)
 		{
-		echo "Connexion à la base de données impossible !";
+		echo "Connexion ï¿½ la base de donnï¿½es impossible !";
 		mysql_close($cnx);
 		exit();
 		}
@@ -60,20 +60,20 @@ if ($requêteValide)
 	else
 		$SQL = "INSERT INTO questionnaire(cle,name,displayName,description) VALUES('".$cle."','".$name."','".$displayName."','vide')";
 	
-	$execution= mysql_query($SQL,$cnx);
+	$execution= $cnx->query($SQL);
 	if (! $execution)
 		{
-		echo "Création du QUESTIONNAIRE impossible !";
+		echo "Crï¿½ation du QUESTIONNAIRE impossible !";
 		mysql_close($cnx);
 		exit();
 		}
 
 	// 6. Fin de connexion
-	mysql_close($cnx);
+	mysqli_close($cnx);
 
 	//---------------------------------------------
-	// Démarrage de SESSION pour sauvegarder le 
-	// descriptif et la clé du questionnaire, puis
+	// Dï¿½marrage de SESSION pour sauvegarder le 
+	// descriptif et la clï¿½ du questionnaire, puis
 	// affichage de la page de saisie des QUESTIONS
 	//---------------------------------------------
 	session_start();

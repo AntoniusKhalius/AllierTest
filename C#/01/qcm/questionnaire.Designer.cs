@@ -35,6 +35,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(224, 58);
+            this.ControlBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "questionnaire";
             this.Text = "Sans titre";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.questionnaire_FormClosing);

@@ -72,3 +72,15 @@ C:\Users\siosl\Documents\ELBALI\PPE\PPE_AllierTest\C#\01\qcm\obj\x86\Debug\qcm.c
 C:\Users\siosl\Documents\ELBALI\PPE\PPE_AllierTest\C#\01\qcm\obj\x86\Debug\qcm.csprojResolveAssemblyReference.cache
 C:\Users\siosl\Documents\ELBALI\PPE\PPE_AllierTest\C#\01\qcm\obj\x86\Debug\qcm.container.resources
 C:\Users\siosl\Documents\ELBALI\PPE\PPE_AllierTest\C#\01\qcm\obj\x86\Debug\qcm.xmlSelection.resources
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\bin\Debug\qcm.exe
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\bin\Debug\qcm.pdb
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\obj\x86\Debug\qcm.container.resources
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\obj\x86\Debug\qcm.Properties.Resources.resources
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\obj\x86\Debug\qcm.questionnaire.resources
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\obj\x86\Debug\qcm.csproj.GenerateResource.cache
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\obj\x86\Debug\qcm.exe
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\obj\x86\Debug\qcm.pdb
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\obj\x86\Debug\qcm.csprojResolveAssemblyReference.cache
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\obj\x86\Debug\qcm.fermerQuestionnaire.resources
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\obj\x86\Debug\qcm.validerQuestionnaire.resources
+C:\Users\Khalil\Documents\PPE\PPE2\C#\01\qcm\obj\x86\Debug\qcm.ouvrirQuestionnaire.resources
